@@ -41,22 +41,26 @@ def make_list_free_fields(board):
     print(free_squares)
     
 def victory(board, sign):
-    if board[0][0] == sign and board[0][1] == sign and board[0][2]:
-        print("Player", sign, "wins!")
-    elif board[1][0] == sign and board[1][1] == sign and board[1][2]:
-        print("Player", sign, "wins!")
-    elif board[2][0] == sign and board[2][1] == sign and board[2][2]:
-        print("Player", sign, "wins!")
-    elif board[0][0] == sign and board[0][1] == sign and board[0][2]:
-        print("Player", sign, "wins!")
-    elif board[0][1] == sign and board[1][1] == sign and board[1][2]:
-        print("Player", sign, "wins!")
-    elif board[0][2] == sign and board[1][2] == sign and board[2][2]:
-        print("Player", sign, "wins!")
-    elif board[0][0] == sign and board[1][1] == sign and board[2][2]:
-        print("Player", sign, "wins!")
-    elif board[0][2] == sign and board[1][1] == sign and board[2][0]:
-        print("Player", sign, "wins!")
+    if sign == 'O':
+        print("Checking to see if you won:")
+    else:
+        print("Checking to see if computer won")
+    if board[0][0] == sign and board[0][1] == sign and board[0][2] == sign:
+        return True
+    elif board[1][0] == sign and board[1][1] == sign and board[1][2] == sign:
+        return True
+    elif board[2][0] == sign and board[2][1] == sign and board[2][2] == sign:
+        return True
+    elif board[0][0] == sign and board[0][1] == sign and board[0][2] == sign:
+        return True
+    elif board[0][1] == sign and board[1][1] == sign and board[2][2] == sign:
+        return True
+    elif board[0][2] == sign and board[1][2] == sign and board[2][2] == sign:
+        return True
+    elif board[0][0] == sign and board[1][1] == sign and board[2][2] == sign:
+        return True
+    elif board[0][2] == sign and board[1][1] == sign and board[2][0] == sign:
+        return True
     else:
         print("No winner yet")
         
@@ -76,67 +80,51 @@ board = [['1','2','3'], ['4',"X",'6'], ['7','8','9']]
 number_of_moves = 1 # computer always goes first as X is placed in square 5 on game board
 user = 'O'
 computer = 'X'
+print("Welcome to Tic-Tact-Toe the Pythonic Way")
+print("Here is the current status of the game board")
 display_board(board)
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
+print()
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
+while number_of_moves < 9:
+    # user turn each round
+    enter_move(board)
+    number_of_moves += 1
+    display_board(board)
+    if victory(board, user):
+        print("You won!")
+        break
+    else:
+        print("Here is the list of open cells and the board itself")
+        make_list_free_fields(board)
+        print()
+        display_board(board)
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
+    # Computer Turn now
+    print()
+    print("Computer move now")
+    computer_move(board)
+    number_of_moves += 1
+    display_board(board)
+    print()
+    
+    if victory(board, computer) == True:
+        print("Computer wins. You suck at tic-tac-toe")
+        break
+    else:
+        print("Here is the list of open cells and the board itself")
+        make_list_free_fields(board)
+        print()
+        display_board(board)
+else:
+    print("Tie game")       
+    # computer move    
+    print()
+    
+print("Thanks for playing")
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
 
-enter_move(board)
-make_list_free_fields(board)
-victory(board, user)
-victory(board, computer)
-computer_move(board)
-victory(board, user)
-victory(board, computer)
-display_board(board)
+
+
 
